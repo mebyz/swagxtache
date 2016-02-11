@@ -44,7 +44,7 @@ for(var index in paths){
 
 fs.readFile(templatePath, function (err, data) {
 	if (err) {
-		console.log('error loading mustache file !')
+		console.log('error loading mustache file ! ('+templatePath+')')
 		process.exit(1);
 	}
   	var output = Mustache.render(data.toString(), view);
