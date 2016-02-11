@@ -1,0 +1,28 @@
+{
+  "name": "swagxtache",
+  "version": "1.0.0",
+  "description": "swagger yaml generic transpiler using mustache templates",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mebyz/swagxtache.git"
+  },
+  "keywords": [
+    "swagger",
+    "mustache",
+    "transpiler"
+  ],
+  "author": "mebyz (emmanuel.botros@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mebyz/swagxtache/issues"
+  },
+  "homepage": "https://github.com/mebyz/swagxtache#readme",
+  "dependencies": {
+    "mustache": "^2.2.1",
+    "yamljs": "^0.2.4"
+  }
+}
