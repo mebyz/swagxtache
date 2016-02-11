@@ -19,6 +19,7 @@ var yamlPath = process.argv[2];
 var templatePath = process.argv[3];
 var outPath = process.argv[4];
 
+console.log('load '+yamlPath);
 nativeObject = YAML.load(yamlPath);
 
 var paths = nativeObject["paths"];
@@ -50,7 +51,7 @@ fs.readFile(templatePath, function (err, data) {
   	var output = Mustache.render(data.toString(), view);
 	fs.writeFile(outPath, output, function(err) {
 	    if(err) {
-			console.log('error writing output file !')
+			console.log('error writing output file ! ('+outPath+')')
 			process.exit(1);
 	    }
 	    console.log(outPath+" was saved!");
