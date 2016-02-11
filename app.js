@@ -53,6 +53,6 @@ fs.readFile(templatePath, function (err, data) {
 			console.log('error writing output file !')
 			process.exit(1);
 	    }
-	    console.log("The file was saved!");
+	    console.log(outPath+" was saved!");
 	}); 
 });
