@@ -1,19 +1,58 @@
-YAML = require('yamljs');
-Mustache = require('mustache');
+if (!process.argv[2]) {
+	console.log('empty path for yaml file !')
+	process.exit(1);
+}
+if (!process.argv[3]) {
+	console.log('empty path for mustache file !')
+	process.exit(1);
+}
+if (!process.argv[4]) {
+	console.log('empty path for output file !')
+	process.exit(1);
+}
 
-nativeObject = YAML.load('api.yaml');
+var YAML = require('yamljs');
+var Mustache = require('mustache');
+var fs = require('fs');
 
+var yamlPath = process.argv[2];
+var templatePath = process.argv[3];
+var outPath = process.argv[4];
 
-console.log(nativeObject);
+nativeObject = YAML.load(yamlPath);
 
+var paths = nativeObject["paths"];
+var view = { operations:[] };
 
-var view = {
-  title: "Joe",
-  calc: function () {
-    return 2 + 4;
-  }
-};
- 
-var output = Mustache.render("{{title}} spends {{calc}}", view);
+for(var index in paths){
+	var path= paths[index];
+	for(var method in path){
+		var operation = { httpMethod: method};
+		var pathargs= path[method];
 
-console.log(output);
+		for(var patharg in pathargs){
+			var val=pathargs[patharg];
+			switch(patharg) {
+				case 'summary': operation.summary=val; break;
+				case 'operationId': operation.operationId=val; break;
+				case 'path': operation.path=val; break;
+			}
+		}
+		view.operations.push({operation:operation});
+	}
+}
+
+fs.readFile(templatePath, function (err, data) {
+	if (err) {
+		console.log('error loading mustache file !')
+		process.exit(1);
+	}
+  	var output = Mustache.render(data.toString(), view);
+	fs.writeFile(outPath, output, function(err) {
+	    if(err) {
+			console.log('error writing output file !')
+			process.exit(1);
+	    }
+	    console.log("The file was saved!");
+	}); 
+});
