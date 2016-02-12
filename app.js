@@ -26,9 +26,10 @@ var paths = nativeObject["paths"];
 var view = { operations:[] };
 
 for(var index in paths){
+
 	var path= paths[index];
 	for(var method in path){
-		var operation = { httpMethod: method};
+		var operation = { httpMethod: method, path:index};
 		var pathargs= path[method];
 
 		for(var patharg in pathargs){
@@ -36,13 +37,11 @@ for(var index in paths){
 			switch(patharg) {
 				case 'summary': operation.summary=val; break;
 				case 'operationId': operation.operationId=val; break;
-				case 'path': operation.path=val; break;
 			}
 		}
 		view.operations.push({operation:operation});
 	}
 }
-
 fs.readFile(templatePath, function (err, data) {
 	if (err) {
 		console.log('error loading mustache file ! ('+templatePath+')')
