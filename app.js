@@ -22,7 +22,6 @@ var outPath = process.argv[4];
 console.log('load '+yamlPath);
 nativeObject = YAML.load(yamlPath);
 
-console.log(nativeObject);
 
 var info = nativeObject["info"];
 
