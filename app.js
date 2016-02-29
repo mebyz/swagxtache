@@ -22,8 +22,17 @@ var outPath = process.argv[4];
 console.log('load '+yamlPath);
 nativeObject = YAML.load(yamlPath);
 
+console.log(nativeObject);
+
+var info = nativeObject["info"];
+
+var sitePath = '';
+if (info['x-website'] != undefined)
+	sitePath = info['x-website'];
+
 var paths = nativeObject["paths"];
-var view = { operations:[] };
+var view = { site : sitePath, operations : [] };
+
 
 for(var index in paths){
 
