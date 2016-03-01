@@ -29,9 +29,12 @@ var sitePath = '';
 if (info['x-website'] != undefined)
 	sitePath = info['x-website'];
 
-var paths = nativeObject["paths"];
-var view = { site : sitePath, operations : [] };
+var localHost = '';
+if (info['x-localhost'] != undefined)
+        localHost = info['x-localhost'];
 
+var paths = nativeObject["paths"];
+var view = { site : sitePath, localhost:localHost, operations : [] };
 
 for(var index in paths){
 
