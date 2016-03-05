@@ -38,7 +38,7 @@ if (info['x-domain'] != undefined)
         userDomain = info['x-domain'];
 
 var paths = nativeObject["paths"];
-var view = { site : sitePath, localhost:localHost, operations : [] };
+var view = { site : sitePath, localhost:localHost, operations : [], userDomain : userDomain };
 
 for(var index in paths){
 
