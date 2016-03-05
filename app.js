@@ -33,6 +33,10 @@ var localHost = '';
 if (info['x-localhost'] != undefined)
         localHost = info['x-localhost'];
 
+var userDomain = '';
+if (info['x-domain'] != undefined)
+        userDomain = info['x-domain'];
+
 var paths = nativeObject["paths"];
 var view = { site : sitePath, localhost:localHost, operations : [] };
 
