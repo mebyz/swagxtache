@@ -37,8 +37,12 @@ var userDomain = '';
 if (info['x-domain'] != undefined)
         userDomain = info['x-domain'];
 
+var legacyDomain = '';
+if (info['x-legacy'] != undefined)
+        legacyDomain = info['x-legacy'];
+
 var paths = nativeObject["paths"];
-var view = { site : sitePath, localhost:localHost, operations : [], userDomain : userDomain };
+var view = { site : sitePath, localhost:localHost, operations : [], userDomain : userDomain ,legacyDomain : legacyDomain};
 
 for(var index in paths){
 
